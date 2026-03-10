@@ -17,9 +17,7 @@ add_item() {
 
 items=()
 
-if [[ -z "$query" ]]; then
-    add_item "Type a command" "Use: up, down, mute, unmute or 0-100" "" "false"
-elif [[ "$query" == "up" || "$query" == "u" ]]; then
+if [[ "$query" == "up" || "$query" == "u" ]]; then
     add_item "Volume Up" "Increase volume by 10%" "u"
 elif [[ "$query" == "down" || "$query" == "d" ]]; then
     add_item "Volume Down" "Decrease volume by 10%" "d"
@@ -31,7 +29,7 @@ elif [[ "$query" =~ ^[0-9]+$ ]]; then
     local level=$((10#$query))
 
     if (( level >= 0 && level <= 100 )); then
-        add_item "Set Volume" "Change volume to ${level}%" "${level}"
+        add_item "Set Volume to ${level}%" "Define the volume percentage" "${level}"
     else
         add_item "Value out of range" "Volume must be between 0 and 100 (received: ${level})" "" "false"
     fi
