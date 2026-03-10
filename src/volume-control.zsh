@@ -5,6 +5,11 @@
 
 APP_NAME=Music
 
+autoload is-at-least
+if ! is-at-least 10.15 $(sw_vers -productVersion); then
+    APP_NAME=iTunes
+fi
+
 set_volume() {
     local volume="$1"
     osascript -e "tell app \"$APP_NAME\" to set sound volume to $volume" >/dev/null
