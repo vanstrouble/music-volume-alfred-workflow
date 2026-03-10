@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-query="${1:-}"
+query="$1"
 
 item() {
     local title="$1"
@@ -8,7 +8,7 @@ item() {
     local arg="$3"
     local valid="${4:-true}"
 
-    printf '{"title":"%s","subtitle":"%s","arg":"%s","valid":%s}' "$title" "$subtitle" "$arg" "$valid"
+    echo "{\"title\":\"$title\",\"subtitle\":\"$subtitle\",\"arg\":\"$arg\",\"valid\":$valid}"
 }
 
 add_item() {
@@ -20,9 +20,9 @@ items=()
 if [[ -z "$query" ]]; then
     add_item "Type a command" "Use: up, down or 0-100" "" "false"
 elif [[ "$query" == "up" || "$query" == "u" ]]; then
-    add_item "Volume Up" "Increase volume by 10%" "up"
+    add_item "Volume Up" "Increase volume by 10%" "u"
 elif [[ "$query" == "down" || "$query" == "d" ]]; then
-    add_item "Volume Down" "Decrease volume by 10%" "down"
+    add_item "Volume Down" "Decrease volume by 10%" "d"
 elif [[ "$query" =~ ^[0-9]+$ ]]; then
     local level=$((10#$query))
 
@@ -35,4 +35,4 @@ else
     add_item "Invalid input" "Use: up, down, or 0-100" "" "false"
 fi
 
-printf '{"items":[%s]}\n' "${(j:,:)items}"
+echo "{\"items\":[${(j:,:)items}]}"
