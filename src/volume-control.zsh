@@ -20,6 +20,16 @@ get_volume() {
     osascript -e "tell app \"$APP_NAME\" to get sound volume"
 }
 
+set_mute() {
+    osascript -e "tell app \"$APP_NAME\" to set mute to true" >/dev/null
+    echo "Muted."
+}
+
+set_unmute() {
+    osascript -e "tell app \"$APP_NAME\" to set mute to false" >/dev/null
+    echo "Unmuted."
+}
+
 # Direct argument parsing (from feedback.zsh args)
 case "$1" in
     "u")
@@ -33,6 +43,12 @@ case "$1" in
         volume=$((volume - 10))
         ((volume < 0)) && volume=0
         set_volume "$volume"
+        ;;
+    "m")
+        set_mute
+        ;;
+    "um")
+        set_unmute
         ;;
     [0-9]*)
         volume="$1"

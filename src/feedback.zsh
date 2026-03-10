@@ -18,11 +18,15 @@ add_item() {
 items=()
 
 if [[ -z "$query" ]]; then
-    add_item "Type a command" "Use: up, down or 0-100" "" "false"
+    add_item "Type a command" "Use: up, down, mute, unmute or 0-100" "" "false"
 elif [[ "$query" == "up" || "$query" == "u" ]]; then
     add_item "Volume Up" "Increase volume by 10%" "u"
 elif [[ "$query" == "down" || "$query" == "d" ]]; then
     add_item "Volume Down" "Decrease volume by 10%" "d"
+elif [[ "$query" == "mute" || "$query" == "m" ]]; then
+    add_item "Mute" "Mute Music/iTunes" "m"
+elif [[ "$query" == "unmute" || "$query" == "um" ]]; then
+    add_item "Unmute" "Unmute Music/iTunes" "um"
 elif [[ "$query" =~ ^[0-9]+$ ]]; then
     local level=$((10#$query))
 
@@ -32,7 +36,7 @@ elif [[ "$query" =~ ^[0-9]+$ ]]; then
         add_item "Value out of range" "Volume must be between 0 and 100 (received: ${level})" "" "false"
     fi
 else
-    add_item "Invalid input" "Use: up, down, or 0-100" "" "false"
+    add_item "Invalid input" "Use: up, down, mute, unmute, or 0-100" "" "false"
 fi
 
 echo "{\"items\":[${(j:,:)items}]}"
