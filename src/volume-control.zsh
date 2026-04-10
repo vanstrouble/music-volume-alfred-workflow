@@ -13,7 +13,7 @@ fi
 set_volume() {
     local volume="$1"
     osascript -e "tell app \"$APP_NAME\" to set sound volume to $volume" >/dev/null
-    echo "Current volume is ${volume}."
+    echo "Volume set to ${volume}%."
 }
 
 get_volume() {
@@ -54,9 +54,5 @@ case "$1" in
         volume="$1"
         ((volume > 100)) && volume=100
         set_volume "$volume"
-        ;;
-    *)
-        volume=$(get_volume)
-        echo "Current volume is ${volume}."
         ;;
 esac
