@@ -1,4 +1,8 @@
-# <img src="docs/img/applemusic-icns_512x512x32.png" alt="Apple Music Alfred Workflow Icon" width="45" align="center"/> Music Volume | Alfred Workflow
+# Music Volume | Alfred Workflow
+
+<p align="center">
+	<img src="docs/img/applemusic-icns_512x512x32.png" alt="Apple Music Alfred Workflow Icon" width="112"/>
+</p>
 
 Control the volume of the Music app straight from Alfred. Type a command, see exactly what will happen before you press Return, and get instant confirmation. Fast, clean and no third-party apps required.
 
